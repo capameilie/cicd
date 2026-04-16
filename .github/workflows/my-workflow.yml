@@ -7,6 +7,8 @@ on:
         description: "Run tests?"
         required: true
         default: "false"
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   install:
@@ -28,6 +30,6 @@ jobs:
       run: npm run build
 
     - name: Run tests
-      if: ${{ github.event.inputs.run-tests == 'true' }}
+      if: ${{ github.event.inputs.run-tests == 'true' || github.event_name == 'pull_request' }}
       run: npm test
     
