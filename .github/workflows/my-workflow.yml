@@ -1,7 +1,12 @@
-name: Manual install
+name: Manual install, build and test
 
 on:
   workflow_dispatch:
+    inputs:
+      run-tests:
+        description: "Run tests?"
+        required: true
+        default: "false"
 
 jobs:
   install:
